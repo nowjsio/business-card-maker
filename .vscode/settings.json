@@ -1,0 +1,16 @@
+{
+    "editor.formatOnSave": true,    
+    "javascript.format.enable": false,
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+      }
+    }, 
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#f02c2c",
+      "titleBar.inactiveBackground": "#ee7b8a"
+    },
+    "explorer.compactFolders": false
+
+  }
