@@ -1,0 +1,15 @@
+@value makerRed, makerGreen, makerPink, makerWhite, makerBlack from '../../../src/common/css/colors.module.css';
+
+.notFoundSection {
+    width: 30em;
+    height: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: makerWhite;
+}
+
+.title {
+    color: makerRed;
+}

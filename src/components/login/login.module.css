@@ -1,8 +1,11 @@
 @value makerLightPink, makerGreen, makerWhite, makerBlack from '../../../src/common/css/colors.module.css';
 
+.wholeSection {
+    width: 30em;
+    height: 20em;
+}
 
 .loginSection {
-    width: 30em;
     text-align: center;
     display: flex;
     flex-direction: column;

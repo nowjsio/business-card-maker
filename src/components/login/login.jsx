@@ -1,14 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './login.module.css';
 
 const Login = ({ authService }) => {
+  const navigate = useNavigate();
   const authLogin = event => {
     const currentTargetName = event.currentTarget.innerText;
     authService
       .login(currentTargetName)
       .then(data => {
+        navigate('/maker');
         console.log(data);
       })
       .catch(error => console.error('TEST', error));
