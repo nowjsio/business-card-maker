@@ -6,7 +6,6 @@ import styles from './login.module.css';
 const Login = ({ authService }) => {
   const authLogin = event => {
     const currentTargetName = event.currentTarget.innerText;
-    console.log(currentTargetName);
     authService
       .login(currentTargetName)
       .then(data => {
@@ -14,34 +13,28 @@ const Login = ({ authService }) => {
       })
       .catch(error => console.error('TEST', error));
   };
+  const providerList = ['Google', 'Github'];
   return (
-    <section>
+    <div className={styles.wholeSection}>
       <Header />
       <section className={styles.loginSection}>
         <h1 className={styles.title}>Login</h1>
         <ul className={styles.list}>
-          <li className={styles.item}>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={event => authLogin(event)}
-            >
-              Google
-            </button>
-          </li>
-          <li>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={event => authLogin(event)}
-            >
-              Github
-            </button>
-          </li>
+          {providerList.map(item => (
+            <li key={item} className={styles.item}>
+              <button
+                className={styles.button}
+                type="button"
+                onClick={event => authLogin(event)}
+              >
+                {item}
+              </button>
+            </li>
+          ))}
         </ul>
       </section>
       <Footer />
-    </section>
+    </div>
   );
 };
 
