@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import Header from '../header/header';
@@ -6,17 +6,26 @@ import styles from './login.module.css';
 
 const Login = ({ authService }) => {
   const navigate = useNavigate();
+  const goToMaker = uid => {
+    navigate('/maker', {
+      state: { uid },
+    });
+  };
   const authLogin = event => {
     const currentTargetName = event.currentTarget.innerText;
     authService
       .login(currentTargetName)
-      .then(data => {
-        navigate('/maker');
-        console.log(data);
-      })
+      .then(data => goToMaker(data.user.uid))
       .catch(error => console.error('TEST', error));
   };
   const providerList = ['Google', 'Github'];
+
+  useEffect(() => {
+    authService.onAuthStateChanged(user => {
+      return user && goToMaker(user.uid);
+    });
+  });
+
   return (
     <div className={styles.wholeSection}>
       <Header />

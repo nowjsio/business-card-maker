@@ -1,0 +1,12 @@
+@value makerGrey, makerGreen, makerWhite, makerBlack from '../../../src/common/css/colors.module.css';
+
+.maker {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    flex: 1;
+    display: flex;
+}

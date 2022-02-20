@@ -1,0 +1,7 @@
+@value makerLightPink from '../../../src/common/css/colors.module.css';
+
+.editor {
+    flex-basis: 50%;
+    background-color: makerLightPink;
+    text-align: center;
+}

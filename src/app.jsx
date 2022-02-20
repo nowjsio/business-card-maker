@@ -14,7 +14,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login authService={authService} />} />
-          <Route path="maker" exact element={<Maker />} />
+          <Route
+            path="/maker"
+            exact
+            element={<Maker authService={authService} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
