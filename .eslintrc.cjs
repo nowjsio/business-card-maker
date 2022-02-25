@@ -20,5 +20,6 @@ module.exports = {
   rules: {
     'react/prop-types': ['off'],
     'no-console': ['off'],
+    'no-underscore-dangle': ['off'],
   },
 };
