@@ -1,5 +1,5 @@
 @value makerGrey, makerGreen, makerWhite, makerBlack from '../../../src/common/css/colors.module.css';
-
+@value mediaQueryDeskTops from '../../../src/common/css/size.module.css';
 .maker {
     width: 100%;
     height: 100%;
@@ -9,4 +9,10 @@
 .container {
     flex: 1;
     display: flex;
+}
+
+@media screen and (max-width: mediaQueryDeskTops) {
+    .container {
+        flex-direction: column;
+    }
 }

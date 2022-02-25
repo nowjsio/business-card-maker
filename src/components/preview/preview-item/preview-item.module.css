@@ -1,0 +1,7 @@
+.previewItem {
+    display: flex;
+    justify-content: center;
+}
+.image {
+    width: 3em
+}

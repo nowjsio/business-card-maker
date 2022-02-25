@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import styles from './maker.module.css';
@@ -27,12 +28,35 @@ const Maker = ({ authService }) => {
     });
   });
   console.log(`uid: ${uid}`);
+  const data = [
+    {
+      Name: 'nowjsio',
+      Company: 'google',
+      Light: 'Dark',
+      Title: 'developer',
+      Email: 'nowjsio@gmail.com',
+    },
+    {
+      Name: 'tester',
+      Company: 'google',
+      Light: 'Light',
+      Title: 'developer',
+      Email: 'Tester@gmail.com',
+    },
+    {
+      Name: 'bob',
+      Company: 'google',
+      Light: 'Colorful',
+      Title: 'developer',
+      Email: 'bob@gmail.com',
+    },
+  ];
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor />
-        <Preview />
+        <Editor data={data} />
+        <Preview data={data} />
       </div>
       <Footer />
     </section>

@@ -4,4 +4,8 @@
     flex-basis: 50%;
     background-color: makerLightGrey;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
