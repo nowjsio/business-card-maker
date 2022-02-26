@@ -1,0 +1,15 @@
+- name: nowjsio
+  company: etc
+  theme: Dark
+  title: developer
+  Eemal: nowjsio@gmail.com
+- name: tester
+  company: etc
+  theme: Light
+  title: developer
+  Eemal: Tester@gmail.com
+- name: bob
+  company: etc
+  theme: Colorful
+  title: developer
+  Eemal: bob@gmail.com
