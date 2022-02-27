@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../header/header';
@@ -10,38 +10,44 @@ import Preview from '../preview/preview';
 const Maker = ({ authService }) => {
   const [datas, setDatas] = useState([
     {
+      id: 0,
       name: 'nowjsio',
       company: 'etc',
-      theme: 'Dark',
+      theme: 'dark',
       title: 'developer',
       email: 'nowjsio@gmail.com',
     },
     {
+      id: 1,
       name: 'tester',
       company: 'etc',
-      theme: 'Light',
+      theme: 'light',
       title: 'developer',
       email: 'Tester@gmail.com',
     },
     {
+      id: 2,
       name: 'bob',
       company: 'etc',
-      theme: 'Colorful',
+      theme: 'colorful',
       title: 'developer',
       email: 'bob@gmail.com',
     },
   ]);
-  const submitFormRef = useRef();
-  const editFormRef = useRef();
   // const location = useLocation();
   const navigate = useNavigate();
-  const parsingFormRef = formRef => {
+  const parsingFormRef = (formRef, isNew = false) => {
     const formCurrentValue = formRef?.current;
     if (formCurrentValue) {
       const ret = {};
+      if (isNew) {
+        ret.id = Date.now();
+      }
       // eslint-disable-next-line no-restricted-syntax
       for (const item of formCurrentValue) {
-        ret[item.id] = item.value;
+        if (item.id) {
+          ret[item.id] = item.value;
+        }
       }
       return ret;
     }
@@ -58,7 +64,8 @@ const Maker = ({ authService }) => {
   // } = location;
   const handleSubmit = (event, formRef) => {
     event.preventDefault();
-    const inputData = parsingFormRef(formRef);
+    const isNew = true;
+    const inputData = parsingFormRef(formRef, isNew);
     if (inputData) {
       setDatas(preDatas => {
         return [...preDatas, inputData];
@@ -68,7 +75,24 @@ const Maker = ({ authService }) => {
     }
     formRef.current.reset();
   };
-  const handleEdit = () => {};
+  const handleEdit = (event, formRef) => {
+    event.preventDefault();
+    const inputData = parsingFormRef(formRef);
+    if (inputData) {
+      setDatas(preDatas => {
+        return preDatas.map(item => {
+          if (parseInt(item.id, 10) === parseInt(inputData.id, 10)) {
+            console.log('found same data ID: ', item.id);
+            return inputData;
+          }
+          return item;
+        });
+      });
+    } else {
+      alert('check your input Data');
+    }
+    formRef.current.reset();
+  };
   const handleUploadImage = () => {};
   useEffect(() => {
     authService.onAuthStateChanged(user => {
@@ -87,9 +111,7 @@ const Maker = ({ authService }) => {
         <Editor
           datas={datas}
           onSubmit={handleSubmit}
-          submitFormRef={submitFormRef}
           onEdit={handleEdit}
-          editFormRef={editFormRef}
           onUploadImage={handleUploadImage}
         />
         <Preview datas={datas} />

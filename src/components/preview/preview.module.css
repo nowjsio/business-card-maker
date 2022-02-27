@@ -1,7 +1,9 @@
 @value makerLightGrey from '../../../src/common/css/colors.module.css';
 
 .preview {
+    list-style: none;
     flex-basis: 50%;
+    margin: 0;
     background-color: makerLightGrey;
     text-align: center;
     display: flex;

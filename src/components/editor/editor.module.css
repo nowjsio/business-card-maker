@@ -8,15 +8,21 @@
     border-right-color: black;
     border-right-style: dotted;
     border-right-width:0.1em ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
-.editorItem {
+.editorItemList {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
     height: 50%;
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 .editorForm {
     height: 50%;

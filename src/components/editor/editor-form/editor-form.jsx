@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-const EditorForm = ({ onSubmit, submitFormRef }) => {
+const EditorForm = ({ onSubmit }) => {
+  const submitFormRef = useRef();
   return (
     <form
       ref={submitFormRef}
@@ -12,9 +13,9 @@ const EditorForm = ({ onSubmit, submitFormRef }) => {
         <option value="" disabled selected>
           Select your Theme
         </option>
-        <option value="Light">Light</option>
-        <option value="Dark">Dark</option>
-        <option value="Colorful">Colorful</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="colorful">Colorful</option>
       </select>
       <input type="text" id="title" placeholder="Title" />
       <input type="email" id="email" placeholder="Email" />
