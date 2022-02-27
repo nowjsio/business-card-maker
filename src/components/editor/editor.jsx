@@ -7,6 +7,7 @@ const Editor = ({ datas, onSubmit, onEdit, onUploadImage }) => {
   console.log(datas);
   return (
     <section className={styles.editor}>
+      <h1 className={styles.title}>Card Maker</h1>
       <ul className={styles.editorItemList}>
         {datas &&
           datas.map((item, idx) => {

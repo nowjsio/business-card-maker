@@ -16,6 +16,9 @@ const Maker = ({ authService }) => {
       theme: 'dark',
       title: 'developer',
       email: 'nowjsio@gmail.com',
+      message: 'Just Do It',
+      fileName: 'nowjsio',
+      fileUrl: null,
     },
     {
       id: 1,
@@ -24,6 +27,9 @@ const Maker = ({ authService }) => {
       theme: 'light',
       title: 'developer',
       email: 'Tester@gmail.com',
+      message: 'Hello',
+      fileName: 'tester',
+      fileUrl: null,
     },
     {
       id: 2,
@@ -32,6 +38,9 @@ const Maker = ({ authService }) => {
       theme: 'colorful',
       title: 'developer',
       email: 'bob@gmail.com',
+      message: 'Hello',
+      fileName: 'bob',
+      fileUrl: null,
     },
   ]);
   // const location = useLocation();

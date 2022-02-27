@@ -7,8 +7,8 @@
     flex-direction: column;
 }
 .container {
-    flex: 1;
     display: flex;
+    flex: 1;
 }
 
 @media screen and (max-width: mediaQueryDeskTops) {
