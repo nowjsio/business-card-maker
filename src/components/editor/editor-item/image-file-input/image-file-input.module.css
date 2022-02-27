@@ -1,0 +1,14 @@
+@value makerOrange, makerWhite, makerGreen from '../../../../../src/common/css/colors.module.css';
+.button {
+    background-color: makerOrange;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.button:hover {
+    opacity: 0.8;
+  }
+  

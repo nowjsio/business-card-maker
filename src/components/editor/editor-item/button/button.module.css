@@ -1,0 +1,24 @@
+@value makerBlack, makerWhite, makerGreen from '../../../../../src/common/css/colors.module.css';
+
+.button {
+  
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5em;
+  flex: 1 1 30%;
+  font-size: 0.8rem;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button.delete {
+  background-color: makerBlack;
+  color: makerWhite
+}
+
+.button.edit {
+  background-color: makerGreen;
+  color: makerWhite;
+}
