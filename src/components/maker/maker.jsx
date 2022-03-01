@@ -96,7 +96,7 @@ const Maker = ({ authService }) => {
     const inputData = parsingFormRef(formRef);
     if (inputData) {
       setDatas(preDatas => {
-        return { ...preDatas, inputData };
+        return { ...preDatas, ...inputData };
       });
     } else {
       alert('check your input Data');
