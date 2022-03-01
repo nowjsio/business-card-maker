@@ -9,6 +9,8 @@ const Button = ({ id, onClick, formRef }) => {
         return styles.edit;
       case 'delete':
         return styles.delete;
+      case 'submit':
+        return styles.submit;
       default:
         throw new Error(`unknown theme: ${lowerInputId}`);
     }
