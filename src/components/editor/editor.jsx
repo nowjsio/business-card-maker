@@ -3,7 +3,7 @@ import styles from './editor.module.css';
 import EditorItem from './editor-item/editor-item';
 import EditorForm from './editor-form/editor-form';
 
-const Editor = ({ datas, onSubmit, onEdit, onUploadImage }) => {
+const Editor = ({ datas, onSubmit, onEdit, onDelete, onUploadImage }) => {
   console.log(datas);
   return (
     <section className={styles.editor}>
@@ -17,6 +17,7 @@ const Editor = ({ datas, onSubmit, onEdit, onUploadImage }) => {
                 key={key}
                 item={item}
                 onEdit={onEdit}
+                onDelete={onDelete}
                 onUploadImage={onUploadImage}
               />
             );

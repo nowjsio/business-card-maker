@@ -5,6 +5,8 @@ import styles from './editor-form.module.css';
 
 const EditorForm = ({ onSubmit, onUploadImage }) => {
   const submitFormRef = useRef();
+  const tempFileName = null;
+  const tempFileUrl = null;
   const id = String(Date.now());
   return (
     <form ref={submitFormRef} className={styles.form}>
@@ -47,7 +49,11 @@ const EditorForm = ({ onSubmit, onUploadImage }) => {
         placeholder="Message"
       />
       <div className={styles.fileInput}>
-        <ImageFileInput onClick={onUploadImage} />
+        <ImageFileInput
+          fileName={tempFileName}
+          fileUrl={tempFileUrl}
+          onClick={onUploadImage}
+        />
       </div>
       <Button id="submit" onClick={onSubmit} formRef={submitFormRef} />
     </form>

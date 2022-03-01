@@ -1,4 +1,4 @@
-@value makerOrange, makerWhite, makerGreen from '../../../../../src/common/css/colors.module.css';
+@value makerLightGrey, makerOrange, makerWhite, makerGreen from '../../../../../src/common/css/colors.module.css';
 .button {
     background-color: makerOrange;
     width: 100%;
@@ -12,3 +12,10 @@
     opacity: 0.8;
   }
   
+  .defaultImage {
+    background-color: makerLightGrey;
+  }
+
+  .validImage {
+    background-color: makerOrange;
+  }

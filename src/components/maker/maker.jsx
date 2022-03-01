@@ -28,7 +28,7 @@ const Maker = ({ authService }) => {
       title: 'developer',
       email: 'Tester@gmail.com',
       message: 'Hello',
-      fileName: 'tester',
+      fileName: null,
       fileUrl: null,
     },
     {
@@ -39,7 +39,7 @@ const Maker = ({ authService }) => {
       title: 'developer',
       email: 'bob@gmail.com',
       message: 'Hello',
-      fileName: 'bob',
+      fileName: null,
       fileUrl: null,
     },
   ]);
@@ -47,6 +47,7 @@ const Maker = ({ authService }) => {
   const navigate = useNavigate();
   const parsingFormRef = (formRef, isNew = false) => {
     const formCurrentValue = formRef?.current;
+    // TODO: add logic for  inputForm validation
     if (formCurrentValue) {
       const ret = {};
       if (isNew) {
@@ -102,6 +103,24 @@ const Maker = ({ authService }) => {
     }
     formRef.current.reset();
   };
+  const handleDelete = (event, formRef) => {
+    event.preventDefault();
+    const inputFormId = formRef?.current?.id?.value;
+    if (inputFormId) {
+      setDatas(preDatas => {
+        return preDatas.filter(item => {
+          if (parseInt(item.id, 10) === parseInt(inputFormId, 10)) {
+            console.log('found same data ID: ', item.id);
+            return false;
+          }
+          return true;
+        });
+      });
+      formRef.current.reset();
+    } else {
+      alert('check your input Data');
+    }
+  };
   const handleUploadImage = () => {};
   useEffect(() => {
     authService.onAuthStateChanged(user => {
@@ -121,6 +140,7 @@ const Maker = ({ authService }) => {
           datas={datas}
           onSubmit={handleSubmit}
           onEdit={handleEdit}
+          onDelete={handleDelete}
           onUploadImage={handleUploadImage}
         />
         <Preview datas={datas} />

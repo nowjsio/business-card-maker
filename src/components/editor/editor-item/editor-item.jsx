@@ -3,9 +3,9 @@ import Button from './button/button';
 import ImageFileInput from './image-file-input/image-file-input';
 import styles from './editor-item.module.css';
 
-const EditorItem = ({ item, onEdit, onUploadImage }) => {
-  const { id, name, company, theme, title, email, message } = item;
-  const onDelete = () => {};
+const EditorItem = ({ item, onEdit, onDelete, onUploadImage }) => {
+  const { id, name, company, theme, title, email, message, fileName, fileUrl } =
+    item;
   const editFormRef = useRef();
   return (
     <li>
@@ -46,10 +46,14 @@ const EditorItem = ({ item, onEdit, onUploadImage }) => {
           defaultValue={message}
         />
         <div className={styles.fileInput}>
-          <ImageFileInput onClick={onUploadImage} />
+          <ImageFileInput
+            fileName={fileName}
+            fileUrl={fileUrl}
+            onClick={onUploadImage}
+          />
         </div>
         <Button id="Edit" onClick={onEdit} formRef={editFormRef} />
-        <Button id="Delete" onClick={onDelete} />
+        <Button id="Delete" onClick={onDelete} formRef={editFormRef} />
       </form>
     </li>
   );
