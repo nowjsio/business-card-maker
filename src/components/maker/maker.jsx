@@ -83,8 +83,9 @@ const Maker = ({ authService }) => {
     const isNew = true;
     const inputData = parsingFormRef(formRef, isNew);
     if (inputData) {
-      const newDatas = { ...datas, ...inputData };
-      setDatas(newDatas);
+      setDatas(preDatas => {
+        return { ...preDatas, ...inputData };
+      });
     } else {
       alert('check your input Data');
     }
@@ -94,8 +95,9 @@ const Maker = ({ authService }) => {
     event.preventDefault();
     const inputData = parsingFormRef(formRef);
     if (inputData) {
-      const newDatas = { ...datas, ...inputData };
-      setDatas(newDatas);
+      setDatas(preDatas => {
+        return { ...preDatas, inputData };
+      });
     } else {
       alert('check your input Data');
     }
@@ -105,9 +107,11 @@ const Maker = ({ authService }) => {
     event.preventDefault();
     const inputFormId = formRef?.current?.id?.value;
     if (inputFormId) {
-      const newDatas = { ...datas };
-      delete newDatas[inputFormId];
-      setDatas(newDatas);
+      setDatas(preDatas => {
+        const newDatas = { ...preDatas };
+        delete newDatas[inputFormId];
+        return newDatas;
+      });
       formRef.current.reset();
     } else {
       alert('check your input Data');
