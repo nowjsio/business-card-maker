@@ -37,7 +37,7 @@ const Login = ({ authService }) => {
               <button
                 className={styles.button}
                 type="button"
-                onClick={event => authLogin(event)}
+                onClick={authLogin}
               >
                 {item}
               </button>
