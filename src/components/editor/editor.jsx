@@ -10,12 +10,12 @@ const Editor = ({ datas, onSubmit, onEdit, onDelete, onUploadImage }) => {
       <h1 className={styles.title}>Card Maker</h1>
       <ul className={styles.editorItemList}>
         {datas &&
-          datas.map((item, idx) => {
+          Object.keys(datas).map((id, idx) => {
             const key = Date.now() + idx;
             return (
               <EditorItem
                 key={key}
-                item={item}
+                item={datas[id]}
                 onEdit={onEdit}
                 onDelete={onDelete}
                 onUploadImage={onUploadImage}

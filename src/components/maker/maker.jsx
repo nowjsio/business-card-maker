@@ -8,9 +8,9 @@ import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 
 const Maker = ({ authService }) => {
-  const [datas, setDatas] = useState([
-    {
-      id: 0,
+  const [datas, setDatas] = useState({
+    0: {
+      id: '0',
       name: 'nowjsio',
       company: 'etc',
       theme: 'dark',
@@ -20,8 +20,8 @@ const Maker = ({ authService }) => {
       fileName: 'nowjsio',
       fileUrl: null,
     },
-    {
-      id: 1,
+    1: {
+      id: '1',
       name: 'tester',
       company: 'etc',
       theme: 'light',
@@ -31,8 +31,8 @@ const Maker = ({ authService }) => {
       fileName: null,
       fileUrl: null,
     },
-    {
-      id: 2,
+    2: {
+      id: '2',
       name: 'bob',
       company: 'etc',
       theme: 'colorful',
@@ -42,23 +42,29 @@ const Maker = ({ authService }) => {
       fileName: null,
       fileUrl: null,
     },
-  ]);
+  });
   // const location = useLocation();
   const navigate = useNavigate();
   const parsingFormRef = (formRef, isNew = false) => {
     const formCurrentValue = formRef?.current;
-    // TODO: add logic for  inputForm validation
+    const parsedForm = {};
     if (formCurrentValue) {
-      const ret = {};
-      if (isNew) {
-        ret.id = Date.now();
-      }
       // eslint-disable-next-line no-restricted-syntax
       for (const item of formCurrentValue) {
         if (item.id) {
-          ret[item.id] = item.value;
+          parsedForm[item.id] = item.value;
         }
       }
+      if (isNew) {
+        const newId = String(Date.now());
+        const ret = {
+          [newId]: { id: newId, ...parsedForm },
+        };
+        return ret;
+      }
+      const ret = {
+        [parsedForm.id]: { ...parsedForm },
+      };
       return ret;
     }
     return null;
@@ -77,9 +83,8 @@ const Maker = ({ authService }) => {
     const isNew = true;
     const inputData = parsingFormRef(formRef, isNew);
     if (inputData) {
-      setDatas(preDatas => {
-        return [...preDatas, inputData];
-      });
+      const newDatas = { ...datas, ...inputData };
+      setDatas(newDatas);
     } else {
       alert('check your input Data');
     }
@@ -89,15 +94,8 @@ const Maker = ({ authService }) => {
     event.preventDefault();
     const inputData = parsingFormRef(formRef);
     if (inputData) {
-      setDatas(preDatas => {
-        return preDatas.map(item => {
-          if (parseInt(item.id, 10) === parseInt(inputData.id, 10)) {
-            console.log('found same data ID: ', item.id);
-            return inputData;
-          }
-          return item;
-        });
-      });
+      const newDatas = { ...datas, ...inputData };
+      setDatas(newDatas);
     } else {
       alert('check your input Data');
     }
@@ -107,15 +105,9 @@ const Maker = ({ authService }) => {
     event.preventDefault();
     const inputFormId = formRef?.current?.id?.value;
     if (inputFormId) {
-      setDatas(preDatas => {
-        return preDatas.filter(item => {
-          if (parseInt(item.id, 10) === parseInt(inputFormId, 10)) {
-            console.log('found same data ID: ', item.id);
-            return false;
-          }
-          return true;
-        });
-      });
+      const newDatas = { ...datas };
+      delete newDatas[inputFormId];
+      setDatas(newDatas);
       formRef.current.reset();
     } else {
       alert('check your input Data');

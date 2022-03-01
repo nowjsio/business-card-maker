@@ -8,9 +8,9 @@ const Preview = ({ datas }) => {
       <h1 className={styles.title}>Card Preview</h1>
       <ul className={styles.previewList}>
         {datas &&
-          datas.map((item, idx) => {
+          Object.keys(datas).map((id, idx) => {
             const key = Date.now() + idx;
-            return <PreviewItem key={key} item={item} />;
+            return <PreviewItem key={key} item={datas[id]} />;
           })}
       </ul>
     </section>

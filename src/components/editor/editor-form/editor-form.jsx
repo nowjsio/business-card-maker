@@ -7,10 +7,8 @@ const EditorForm = ({ onSubmit, onUploadImage }) => {
   const submitFormRef = useRef();
   const tempFileName = null;
   const tempFileUrl = null;
-  const id = String(Date.now());
   return (
     <form ref={submitFormRef} className={styles.form}>
-      <input type="hidden" id="id" value={id} readOnly />
       <input
         className={styles.input}
         type="text"
