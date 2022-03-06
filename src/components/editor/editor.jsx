@@ -4,7 +4,6 @@ import EditorItem from './editor-item/editor-item';
 import EditorForm from './editor-form/editor-form';
 
 const Editor = ({ ImageFileInput, cards, onAdd, onUpdate, onDelete }) => {
-  console.log(cards);
   return (
     <section className={styles.editor}>
       <h1 className={styles.title}>Card Maker</h1>

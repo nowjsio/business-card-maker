@@ -46,12 +46,19 @@ const Maker = ({ ImageFileInput, authService }) => {
 
   const navigate = useNavigate();
 
-  const onLogout = () => {
-    authService.logout();
-  };
-
   const goToHome = () => {
     navigate('/');
+  };
+
+  useEffect(() => {
+    authService.onAuthStateChanged(user => {
+      if (!user) {
+        goToHome();
+      }
+    });
+  });
+  const onLogout = () => {
+    authService.logout();
   };
 
   const handleAdd = newCard => {
@@ -77,14 +84,6 @@ const Maker = ({ ImageFileInput, authService }) => {
       return update;
     });
   };
-
-  useEffect(() => {
-    authService.onAuthStateChanged(user => {
-      if (!user) {
-        goToHome();
-      }
-    });
-  });
 
   return (
     <section className={styles.maker}>
