@@ -8,11 +8,11 @@
     border-right-color: black;
     border-right-style: dotted;
     border-right-width:0.1em ;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow-y: auto;
+    padding: 0.5em 2em;
 }
 .editorItemList {
     list-style: none;
@@ -32,8 +32,6 @@
     color: makerGreen;
 }
 .editorForm {
-    height: 50%;
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;

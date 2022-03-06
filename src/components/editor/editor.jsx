@@ -7,20 +7,18 @@ const Editor = ({ ImageFileInput, cards, onAdd, onUpdate, onDelete }) => {
   return (
     <section className={styles.editor}>
       <h1 className={styles.title}>Card Maker</h1>
-      <ul className={styles.editorItemList}>
-        {cards &&
-          Object.keys(cards).map(id => {
-            return (
-              <EditorItem
-                key={id}
-                ImageFileInput={ImageFileInput}
-                card={cards[id]}
-                onUpdate={onUpdate}
-                onDelete={onDelete}
-              />
-            );
-          })}
-      </ul>
+      {cards &&
+        Object.keys(cards).map(id => {
+          return (
+            <EditorItem
+              key={id}
+              ImageFileInput={ImageFileInput}
+              card={cards[id]}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
+            />
+          );
+        })}
       <div className={styles.editorForm}>
         <EditorForm ImageFileInput={ImageFileInput} onAdd={onAdd} />
       </div>
