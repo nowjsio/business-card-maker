@@ -4,6 +4,7 @@
     flex-basis: 50%;
     margin: 0;
     background-color: makerLightGrey;
+    overflow-y: auto;
 }
 
 .title {
