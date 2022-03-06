@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Header from '../header/header';
 import Footer from '../footer/footer';
@@ -43,7 +43,8 @@ const Maker = ({ ImageFileInput, authService }) => {
       fileURL: null,
     },
   });
-
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
 
   const goToHome = () => {
