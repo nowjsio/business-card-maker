@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Button from './button/button';
 import styles from './editor-item.module.css';
@@ -18,13 +19,12 @@ const EditorItem = ({ ImageFileInput, card, onUpdate, onDelete }) => {
   };
 
   const onChange = event => {
+    console.log(event);
     event.preventDefault();
-    if (event.currentTarget == null) {
-      return;
-    }
-    const targetName = event.currentTarget.name;
-    const targetValue = event.currentTarget.value;
-    onUpdate({ ...card, [targetName]: targetValue });
+    onUpdate({
+      ...card,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
   };
 
   return (

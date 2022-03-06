@@ -9,11 +9,10 @@ const Editor = ({ ImageFileInput, cards, onAdd, onUpdate, onDelete }) => {
       <h1 className={styles.title}>Card Maker</h1>
       <ul className={styles.editorItemList}>
         {cards &&
-          Object.keys(cards).map((id, idx) => {
-            const key = Date.now() + idx;
+          Object.keys(cards).map(id => {
             return (
               <EditorItem
-                key={key}
+                key={id}
                 ImageFileInput={ImageFileInput}
                 card={cards[id]}
                 onUpdate={onUpdate}
