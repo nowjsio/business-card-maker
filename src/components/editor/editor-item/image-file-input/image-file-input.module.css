@@ -1,6 +1,15 @@
-@value makerLightGrey, makerOrange, makerWhite, makerGreen from '../../../../../src/common/css/colors.module.css';
+@value makerPurple, makerLightPink, makerLightGrey, makerOrange, makerWhite, makerGreen from '../../../../../src/common/css/colors.module.css';
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.input {
+  display: none;
+}
+
 .button {
-    background-color: makerOrange;
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -8,14 +17,14 @@
     font-size: 0.8rem;
 }
 
+.button.defaultImage {
+  background-color: makerLightGrey;
+}
+
+.button.usingImage {
+  background-color: makerPurple;
+}
+
 .button:hover {
     opacity: 0.8;
-  }
-  
-  .defaultImage {
-    background-color: makerLightGrey;
-  }
-
-  .validImage {
-    background-color: makerOrange;
   }

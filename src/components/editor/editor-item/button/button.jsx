@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './button.module.css';
 
-const Button = ({ id, onClick, formRef }) => {
-  const getColor = inputId => {
-    const lowerInputId = inputId.toLowerCase();
-    switch (lowerInputId) {
+const Button = ({ name, onClick }) => {
+  const getColor = buttonName => {
+    const buttonNameLower = buttonName.toLowerCase();
+    switch (buttonNameLower) {
       case 'edit':
         return styles.edit;
       case 'delete':
@@ -12,17 +12,17 @@ const Button = ({ id, onClick, formRef }) => {
       case 'submit':
         return styles.submit;
       default:
-        throw new Error(`unknown theme: ${lowerInputId}`);
+        throw new Error(`unknown theme: ${buttonNameLower}`);
     }
   };
 
   return (
     <button
       type="button"
-      className={`${styles.button} ${getColor(id)}`}
-      onClick={event => onClick(event, formRef)}
+      className={`${styles.button} ${getColor(name)}`}
+      onClick={onClick}
     >
-      {id}
+      {name}
     </button>
   );
 };

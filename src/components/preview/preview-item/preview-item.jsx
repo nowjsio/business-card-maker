@@ -3,9 +3,9 @@ import styles from './preview-item.module.css';
 
 const PreviewItem = ({ item }) => {
   const DEFAULT_IMAGAE = '/images/default_logo.png';
-  const { name, company, theme, title, email, message, fileName, fileUrl } =
+  const { name, company, theme, title, email, message, fileName, fileURL } =
     item;
-  const url = fileUrl || DEFAULT_IMAGAE;
+  const url = fileURL || DEFAULT_IMAGAE;
   return (
     <li className={`${styles.previewItem} ${styles[theme]}`}>
       <img className={styles.avatar} src={url} alt={`profile ${fileName}`} />

@@ -1,59 +1,85 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '../editor-item/button/button';
-import ImageFileInput from '../editor-item/image-file-input/image-file-input';
 import styles from './editor-form.module.css';
 
-const EditorForm = ({ onSubmit, onUploadImage }) => {
-  const submitFormRef = useRef();
-  const tempFileName = null;
-  const tempFileUrl = null;
+const EditorForm = ({ ImageFileInput, onAdd }) => {
+  const formRef = useRef();
+  const nameRef = useRef();
+  const companyRef = useRef();
+  const themeRef = useRef();
+  const titleRef = useRef();
+  const emailRef = useRef();
+  const messageRef = useRef();
+  const [file, setFile] = useState({ fileName: '', fileURL: '' });
+
+  const onAddSubmit = event => {
+    event.preventDefault();
+    const card = {
+      id: Date.now(),
+      name: nameRef.current.value || '',
+      company: companyRef.current.value || '',
+      theme: themeRef.current.value || '',
+      title: titleRef.current.value || '',
+      email: emailRef.current.value || '',
+      message: messageRef.current.value || '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
+    };
+    onAdd(card);
+    formRef.current.reset();
+    setFile({ fileName: '', fileURL: '' });
+  };
+
+  const onFileChange = inputFile => {
+    setFile(inputFile);
+  };
+
   return (
-    <form ref={submitFormRef} className={styles.form}>
+    <form ref={formRef} className={styles.form}>
       <input
+        ref={nameRef}
         className={styles.input}
         type="text"
-        id="name"
+        name="name"
         placeholder="Name"
       />
       <input
+        ref={companyRef}
         className={styles.input}
         type="text"
-        id="company"
+        name="company"
         placeholder="Company"
       />
-      <select className={styles.select} id="theme">
-        <option value="" disabled selected>
-          Select your Theme
-        </option>
+      <select ref={themeRef} className={styles.select} name="theme">
+        <option value="">Select your Theme</option>
         <option value="dark">Dark</option>
         <option value="light">Light</option>
         <option value="colorful">Colorful</option>
       </select>
       <input
+        ref={titleRef}
         className={styles.input}
         type="text"
-        id="title"
+        name="title"
         placeholder="Title"
       />
       <input
+        ref={emailRef}
         className={styles.input}
         type="text"
-        id="email"
+        name="email"
         placeholder="Email"
       />
       <textarea
+        ref={messageRef}
         className={styles.textarea}
-        id="message"
+        name="message"
         placeholder="Message"
       />
       <div className={styles.fileInput}>
-        <ImageFileInput
-          fileName={tempFileName}
-          fileUrl={tempFileUrl}
-          onClick={onUploadImage}
-        />
+        <ImageFileInput fileName={file.fileName} onFileChange={onFileChange} />
       </div>
-      <Button id="submit" onClick={onSubmit} formRef={submitFormRef} />
+      <Button name="submit" onClick={onAddSubmit} />
     </form>
   );
 };

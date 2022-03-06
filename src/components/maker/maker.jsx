@@ -7,8 +7,8 @@ import styles from './maker.module.css';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 
-const Maker = ({ authService }) => {
-  const [datas, setDatas] = useState({
+const Maker = ({ ImageFileInput, authService }) => {
+  const [cards, setCards] = useState({
     0: {
       id: '0',
       name: 'nowjsio',
@@ -17,8 +17,8 @@ const Maker = ({ authService }) => {
       title: 'developer',
       email: 'nowjsio@gmail.com',
       message: 'Just Do It',
-      fileName: 'nowjsio',
-      fileUrl: null,
+      fileName: null,
+      fileURL: null,
     },
     1: {
       id: '1',
@@ -29,7 +29,7 @@ const Maker = ({ authService }) => {
       email: 'Tester@gmail.com',
       message: 'Hello',
       fileName: null,
-      fileUrl: null,
+      fileURL: null,
     },
     2: {
       id: '2',
@@ -40,106 +40,64 @@ const Maker = ({ authService }) => {
       email: 'bob@gmail.com',
       message: 'Hello',
       fileName: null,
-      fileUrl: null,
+      fileURL: null,
     },
   });
-  // const location = useLocation();
+
   const navigate = useNavigate();
-  const parsingFormRef = (formRef, isNew = false) => {
-    const formCurrentValue = formRef?.current;
-    const parsedForm = {};
-    if (formCurrentValue) {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const item of formCurrentValue) {
-        if (item.id) {
-          parsedForm[item.id] = item.value;
-        }
-      }
-      if (isNew) {
-        const newId = String(Date.now());
-        const ret = {
-          [newId]: { id: newId, ...parsedForm },
-        };
-        return ret;
-      }
-      const ret = {
-        [parsedForm.id]: { ...parsedForm },
-      };
-      return ret;
-    }
-    return null;
-  };
+
   const onLogout = () => {
     authService.logout();
   };
+
   const goToHome = () => {
     navigate('/');
   };
-  // const {
-  //   state: { uid },
-  // } = location;
-  const handleSubmit = (event, formRef) => {
-    event.preventDefault();
-    const isNew = true;
-    const inputData = parsingFormRef(formRef, isNew);
-    if (inputData) {
-      setDatas(preDatas => {
-        return { ...preDatas, ...inputData };
-      });
-    } else {
-      alert('check your input Data');
-    }
-    formRef.current.reset();
+
+  const handleAdd = newCard => {
+    setCards(preCards => {
+      const update = { ...preCards };
+      update[newCard.id] = newCard;
+      return update;
+    });
   };
-  const handleEdit = (event, formRef) => {
-    event.preventDefault();
-    const inputData = parsingFormRef(formRef);
-    if (inputData) {
-      setDatas(preDatas => {
-        return { ...preDatas, ...inputData };
-      });
-    } else {
-      alert('check your input Data');
-    }
-    formRef.current.reset();
+
+  const handleUpdate = newCard => {
+    setCards(preCards => {
+      const update = { ...preCards };
+      update[newCard.id] = newCard;
+      return update;
+    });
   };
-  const handleDelete = (event, formRef) => {
-    event.preventDefault();
-    const inputFormId = formRef?.current?.id?.value;
-    if (inputFormId) {
-      setDatas(preDatas => {
-        const newDatas = { ...preDatas };
-        delete newDatas[inputFormId];
-        return newDatas;
-      });
-      formRef.current.reset();
-    } else {
-      alert('check your input Data');
-    }
+
+  const handleDelete = newCard => {
+    setCards(preCards => {
+      const update = { ...preCards };
+      delete update[newCard.id];
+      return update;
+    });
   };
-  const handleUploadImage = () => {};
+
   useEffect(() => {
     authService.onAuthStateChanged(user => {
       if (!user) {
         goToHome();
       }
-      //   return !!user && goToHome();
     });
   });
-  // console.log(`uid: ${uid}`);
 
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
         <Editor
-          datas={datas}
-          onSubmit={handleSubmit}
-          onEdit={handleEdit}
+          ImageFileInput={ImageFileInput}
+          cards={cards}
+          onAdd={handleAdd}
+          onUpdate={handleUpdate}
           onDelete={handleDelete}
-          onUploadImage={handleUploadImage}
         />
-        <Preview datas={datas} />
+        <Preview cards={cards} />
       </div>
       <Footer />
     </section>

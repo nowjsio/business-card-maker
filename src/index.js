@@ -1,12 +1,22 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app';
+import AuthService from './service/authService';
+import Cloudinay from './service/cloudinary';
+import ImageFileInput from './components/editor/editor-item/image-file-input/image-file-input';
 
+const authService = new AuthService();
+const cloudinary = new Cloudinay();
+
+const imageFileInput = props => (
+  <ImageFileInput {...props} cloudinary={cloudinary} />
+);
 ReactDOM.render(
-  // eslint-disable-next-line react/jsx-filename-extension
   <React.StrictMode>
-    <App />
+    <App ImageFileInput={imageFileInput} authService={authService} />
   </React.StrictMode>,
   document.getElementById('root'),
 );
