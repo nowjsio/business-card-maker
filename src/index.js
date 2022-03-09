@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app';
-import AuthService from './service/authService';
+import AuthService from './service/auth-service';
 import Cloudinay from './service/cloudinary';
 import ImageFileInput from './components/editor/editor-item/image-file-input/image-file-input';
 
