@@ -5,7 +5,7 @@ import Maker from './components/maker/maker';
 import NotFound from './components/not-found/not-found';
 import styles from './app.module.css';
 
-function App({ ImageFileInput, authService }) {
+function App({ ImageFileInput, authService, cardRepository }) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -17,6 +17,7 @@ function App({ ImageFileInput, authService }) {
             element={
               <Maker
                 ImageFileInput={ImageFileInput}
+                cardRepository={cardRepository}
                 authService={authService}
               />
             }

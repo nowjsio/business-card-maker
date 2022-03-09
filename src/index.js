@@ -7,8 +7,11 @@ import App from './app';
 import AuthService from './service/auth-service';
 import Cloudinay from './service/cloudinary';
 import ImageFileInput from './components/editor/editor-item/image-file-input/image-file-input';
+import CardRepository from './service/card-repository';
+import firebaseApp from './service/firebase';
 
-const authService = new AuthService();
+const authService = new AuthService(firebaseApp);
+const cardRepository = new CardRepository(firebaseApp);
 const cloudinary = new Cloudinay();
 
 const imageFileInput = props => (
@@ -16,7 +19,11 @@ const imageFileInput = props => (
 );
 ReactDOM.render(
   <React.StrictMode>
-    <App ImageFileInput={imageFileInput} authService={authService} />
+    <App
+      ImageFileInput={imageFileInput}
+      cardRepository={cardRepository}
+      authService={authService}
+    />
   </React.StrictMode>,
   document.getElementById('root'),
 );

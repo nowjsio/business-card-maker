@@ -7,44 +7,10 @@ import styles from './maker.module.css';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 
-const Maker = ({ ImageFileInput, authService }) => {
-  const [cards, setCards] = useState({
-    0: {
-      id: '0',
-      name: 'nowjsio',
-      company: 'etc',
-      theme: 'dark',
-      title: 'developer',
-      email: 'nowjsio@gmail.com',
-      message: 'Just Do It',
-      fileName: null,
-      fileURL: null,
-    },
-    1: {
-      id: '1',
-      name: 'tester',
-      company: 'etc',
-      theme: 'light',
-      title: 'developer',
-      email: 'Tester@gmail.com',
-      message: 'Hello',
-      fileName: null,
-      fileURL: null,
-    },
-    2: {
-      id: '2',
-      name: 'bob',
-      company: 'etc',
-      theme: 'colorful',
-      title: 'developer',
-      email: 'bob@gmail.com',
-      message: 'Hello',
-      fileName: null,
-      fileURL: null,
-    },
-  });
-  const location = useLocation();
-  console.log(location);
+const Maker = ({ ImageFileInput, authService, cardRepository }) => {
+  const userHistory = useLocation().state;
+  const [userId, setUserId] = useState(userHistory && userHistory.uid);
+  const [cards, setCards] = useState({});
   const navigate = useNavigate();
 
   const goToHome = () => {
@@ -52,8 +18,20 @@ const Maker = ({ ImageFileInput, authService }) => {
   };
 
   useEffect(() => {
+    if (!userId) {
+      return null;
+    }
+    const stopSync = cardRepository.syncData(userId, setCards);
+    return () => stopSync;
+  }, [userId]);
+
+  useEffect(() => {
+    console.log(userId);
     authService.onAuthStateChanged(user => {
-      if (!user) {
+      console.log(user);
+      if (user) {
+        setUserId(user.uid);
+      } else {
         goToHome();
       }
     });
@@ -68,6 +46,7 @@ const Maker = ({ ImageFileInput, authService }) => {
       update[newCard.id] = newCard;
       return update;
     });
+    cardRepository.create(userId, newCard);
   };
 
   const handleUpdate = newCard => {
@@ -76,6 +55,7 @@ const Maker = ({ ImageFileInput, authService }) => {
       update[newCard.id] = newCard;
       return update;
     });
+    cardRepository.create(userId, newCard);
   };
 
   const handleDelete = newCard => {
@@ -84,6 +64,7 @@ const Maker = ({ ImageFileInput, authService }) => {
       delete update[newCard.id];
       return update;
     });
+    cardRepository.delete(userId, newCard);
   };
 
   return (
