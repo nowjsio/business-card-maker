@@ -8,8 +8,9 @@ import AuthService from './service/auth-service';
 import Cloudinay from './service/cloudinary';
 import ImageFileInput from './components/editor/editor-item/image-file-input/image-file-input';
 import CardRepository from './service/card-repository';
-import firebaseApp from './service/firebase';
+import FireBaseApp from './service/firebase';
 
+const firebaseApp = new FireBaseApp();
 const authService = new AuthService(firebaseApp);
 const cardRepository = new CardRepository(firebaseApp);
 const cloudinary = new Cloudinay();

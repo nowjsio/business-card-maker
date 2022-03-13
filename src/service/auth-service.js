@@ -1,22 +1,19 @@
-/* eslint-disable class-methods-use-this */
-import firebase from 'firebase';
-
 class AuthService {
   constructor(firebaseApp) {
     this.firebaseApp = firebaseApp;
   }
 
   login(providerName) {
-    const authProvider = new firebase.auth[`${providerName}AuthProvider`]();
-    return this.firebaseApp.auth().signInWithPopup(authProvider);
+    const authProvider = this.firebaseApp.getProvider(providerName);
+    return this.firebaseApp.getAuth().signInWithPopup(authProvider);
   }
 
   logout() {
-    this.firebaseApp.auth().signOut();
+    this.firebaseApp.getAuth().signOut();
   }
 
   onAuthStateChanged(cb) {
-    this.firebaseApp.auth().onAuthStateChanged(user => {
+    this.firebaseApp.getAuth().onAuthStateChanged(user => {
       return cb(user);
     });
   }

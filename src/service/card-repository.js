@@ -1,9 +1,7 @@
-/* eslint-disable class-methods-use-this */
-
 class CardRepository {
   constructor(firebaseApp) {
     this.firebaseApp = firebaseApp;
-    this.database = this.firebaseApp.database();
+    this.database = this.firebaseApp.getDataBase();
   }
 
   syncData = (userId, onUpdate) => {
