@@ -24,7 +24,7 @@ const Login = ({ authService }) => {
     authService.onAuthStateChanged(user => {
       return user && goToMaker(user.uid);
     });
-  });
+  }, [authService]);
 
   return (
     <div className={styles.wholeSection}>

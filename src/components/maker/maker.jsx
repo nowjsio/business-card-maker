@@ -23,7 +23,7 @@ const Maker = ({ ImageFileInput, authService, cardRepository }) => {
     }
     const stopSync = cardRepository.syncData(userId, setCards);
     return () => stopSync;
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   useEffect(() => {
     console.log(userId);
@@ -35,7 +35,7 @@ const Maker = ({ ImageFileInput, authService, cardRepository }) => {
         goToHome();
       }
     });
-  });
+  }, [userId, authService]);
   const onLogout = () => {
     authService.logout();
   };
