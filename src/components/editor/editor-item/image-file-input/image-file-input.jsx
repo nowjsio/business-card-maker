@@ -14,7 +14,6 @@ const ImageFileInput = props => {
 
   const onButtonClick = event => {
     event.preventDefault();
-    console.log(inputRef);
     inputRef.current.click();
   };
 

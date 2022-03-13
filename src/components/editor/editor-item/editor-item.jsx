@@ -19,7 +19,6 @@ const EditorItem = ({ ImageFileInput, card, onUpdate, onDelete }) => {
   };
 
   const onChange = event => {
-    console.log(event);
     event.preventDefault();
     onUpdate({
       ...card,

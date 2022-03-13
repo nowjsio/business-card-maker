@@ -26,9 +26,7 @@ const Maker = ({ ImageFileInput, authService, cardRepository }) => {
   }, [userId, cardRepository]);
 
   useEffect(() => {
-    console.log(userId);
     authService.onAuthStateChanged(user => {
-      console.log(user);
       if (user) {
         setUserId(user.uid);
       } else {
